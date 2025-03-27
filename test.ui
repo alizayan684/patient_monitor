@@ -1,0 +1,772 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>PatientMonitoringSystem</class>
+ <widget class="QMainWindow" name="PatientMonitoringSystem">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1280</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>CardioCare Patient Monitoring System</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow {
+    background-color: #f5f7fa;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+QFrame {
+    background-color: white;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+QLabel {
+    color: #333333;
+    font-weight: 500;
+}
+
+QPushButton {
+    background-color: #4a6fa5;
+    color: white;
+    border-radius: 4px;
+    padding: 8px 16px;
+    border: none;
+    font-weight: 500;
+}
+
+QPushButton:hover {
+    background-color: #3a5a8f;
+}
+
+QPushButton:pressed {
+    background-color: #2a4a7f;
+}
+
+QComboBox, QLineEdit, QSpinBox, QDoubleSpinBox {
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    padding: 6px;
+    background-color: white;
+}
+
+QTabWidget::pane {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+}
+
+QTabBar::tab {
+    background: #e0e0e0;
+    border: 1px solid #d0d0d0;
+    padding: 8px 16px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+QTabBar::tab:selected {
+    background: white;
+    border-bottom-color: white;
+}
+
+QScrollArea {
+    border: none;
+    background: transparent;
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tabMonitoring">
+       <attribute name="title">
+        <string>Patient Monitoring</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QFrame" name="framePatientInfo">
+          <layout class="QHBoxLayout" name="horizontalLayout">
+           <item>
+            <widget class="QLabel" name="labelPatientName">
+             <property name="text">
+              <string>Patient: John Doe</string>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">font-size: 16px;
+font-weight: bold;</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="labelPatientID">
+             <property name="text">
+              <string>ID: P-123456</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="labelPatientAge">
+             <property name="text">
+              <string>Age: 45</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="labelPatientGender">
+             <property name="text">
+              <string>Gender: Male</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="labelPatientHR">
+             <property name="text">
+              <string>HR: 72 bpm</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="labelPatientBP">
+             <property name="text">
+              <string>BP: 120/80 mmHg</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="labelPatientSpO2">
+             <property name="text">
+              <string>SpO₂: 98%</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnPause">
+             <property name="text">
+              <string>Pause</string>
+             </property>
+             <property name="icon">
+              <iconset resource="../resources.qrc">
+               <normaloff>:/icons/pause.png</normaloff>:/icons/pause.png</iconset>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnSnapshot">
+             <property name="text">
+              <string>Snapshot</string>
+             </property>
+             <property name="icon">
+              <iconset resource="../resources.qrc">
+               <normaloff>:/icons/camera.png</normaloff>:/icons/camera.png</iconset>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QFrame" name="frameECG">
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <item>
+            <widget class="QLabel" name="labelECGTitle">
+             <property name="text">
+              <string>ECG Waveform - Lead II</string>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">font-size: 14px;
+font-weight: bold;
+color: #4a6fa5;</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCustomPlot" name="ecgPlot" native="true">
+             <property name="styleSheet">
+              <string notr="true">background-color: white;</string>
+             </property>
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <item>
+              <widget class="QPushButton" name="btnZoomIn">
+               <property name="text">
+                <string>Zoom In</string>
+               </property>
+               <property name="icon">
+                <iconset resource="../resources.qrc">
+                 <normaloff>:/icons/zoom-in.png</normaloff>:/icons/zoom-in.png</iconset>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btnZoomOut">
+               <property name="text">
+                <string>Zoom Out</string>
+               </property>
+               <property name="icon">
+                <iconset resource="../resources.qrc">
+                 <normaloff>:/icons/zoom-out.png</normaloff>:/icons/zoom-out.png</iconset>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btnAutoScale">
+               <property name="text">
+                <string>Auto Scale</string>
+               </property>
+               <property name="icon">
+                <iconset resource="../resources.qrc">
+                 <normaloff>:/icons/fit-to-page.png</normaloff>:/icons/fit-to-page.png</iconset>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_2">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QComboBox" name="comboLeadSelect">
+               <item>
+                <property name="text">
+                 <string>Lead I</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Lead II</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Lead III</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>aVR</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>aVL</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>aVF</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>V1</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>V2</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>V3</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>V4</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>V5</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>V6</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="QFrame" name="frameArrhythmia">
+            <layout class="QVBoxLayout" name="verticalLayout_4">
+             <item>
+              <widget class="QLabel" name="labelArrhythmiaTitle">
+               <property name="text">
+                <string>Arrhythmia Detection</string>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">font-size: 14px;
+font-weight: bold;
+color: #4a6fa5;</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="labelArrhythmiaType">
+               <property name="text">
+                <string>Normal Sinus Rhythm</string>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">font-size: 24px;
+font-weight: bold;
+color: #2e7d32;
+background-color: #e8f5e9;
+border-radius: 8px;
+padding: 10px;
+text-align: center;</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QTextEdit" name="textArrhythmiaDetails">
+               <property name="styleSheet">
+                <string notr="true">background-color: white;
+border: 1px solid #e0e0e0;
+border-radius: 8px;
+padding: 8px;</string>
+               </property>
+               <property name="html">
+                <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Regular rhythm with rate 60-100 bpm. Normal P waves, PR interval, and QRS duration.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QFrame" name="frameAlarms">
+            <layout class="QVBoxLayout" name="verticalLayout_5">
+             <item>
+              <widget class="QLabel" name="labelAlarmsTitle">
+               <property name="text">
+                <string>Alarms</string>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">font-size: 14px;
+font-weight: bold;
+color: #4a6fa5;</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QListWidget" name="listAlarms">
+               <property name="styleSheet">
+                <string notr="true">QListWidget {
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 4px;
+}
+
+QListWidget::item {
+    padding: 8px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+QListWidget::item:selected {
+    background-color: #e3f2fd;
+    color: black;
+}</string>
+               </property>
+               <property name="editTriggers">
+                <set>QAbstractItemView::NoEditTriggers</set>
+               </property>
+               <property name="selectionMode">
+                <enum>QAbstractItemView::NoSelection</enum>
+               </property>
+               <item>
+                <property name="text">
+                 <string>08:23:45 - Bradycardia detected (HR: 52 bpm)</string>
+                </property>
+                <property name="foreground">
+                 <brush brushstyle="SolidPattern">
+                  <color alpha="255">
+                   <red>197</red>
+                   <green>17</green>
+                   <blue>98</blue>
+                  </color>
+                 </brush>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>08:15:30 - PVC detected</string>
+                </property>
+                <property name="foreground">
+                 <brush brushstyle="SolidPattern">
+                  <color alpha="255">
+                   <red>198</red>
+                   <green>40</green>
+                   <blue>40</blue>
+                  </color>
+                 </brush>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>08:10:12 - Lead II disconnected</string>
+                </property>
+                <property name="foreground">
+                 <brush brushstyle="SolidPattern">
+                  <color alpha="255">
+                   <red>245</red>
+                   <green>124</green>
+                   <blue>0</blue>
+                  </color>
+                 </brush>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_4">
+               <item>
+                <widget class="QPushButton" name="btnSilenceAlarm">
+                 <property name="text">
+                  <string>Silence Alarm</string>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="../resources.qrc">
+                   <normaloff>:/icons/volume-off.png</normaloff>:/icons/volume-off.png</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="btnAcknowledgeAll">
+                 <property name="text">
+                  <string>Acknowledge All</string>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="../resources.qrc">
+                   <normaloff>:/icons/check-circle.png</normaloff>:/icons/check-circle.png</iconset>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabSettings">
+       <attribute name="title">
+        <string>Settings</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_6">
+        <item>
+         <widget class="QFrame" name="frameECGSettings">
+          <layout class="QVBoxLayout" name="verticalLayout_7">
+           <item>
+            <widget class="QLabel" name="labelECGSettings">
+             <property name="text">
+              <string>ECG Display Settings</string>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">font-size: 14px;
+font-weight: bold;
+color: #4a6fa5;</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_5">
+             <item>
+              <widget class="QLabel" name="labelGain">
+               <property name="text">
+                <string>Gain:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QDoubleSpinBox" name="spinGain">
+               <property name="minimum">
+                <double>0.50</double>
+               </property>
+               <property name="maximum">
+                <double>2.00</double>
+               </property>
+               <property name="singleStep">
+                <double>0.10</double>
+               </property>
+               <property name="value">
+                <double>1.00</double>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="labelSpeed">
+               <property name="text">
+                <string>Speed:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="comboSpeed">
+               <item>
+                <property name="text">
+                 <string>25 mm/s</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>50 mm/s</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="labelFilter">
+               <property name="text">
+                <string>Filter:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="comboFilter">
+               <item>
+                <property name="text">
+                 <string>None</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Low Pass (40Hz)</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Notch (50/60Hz)</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QFrame" name="frameAlarmSettings">
+          <layout class="QVBoxLayout" name="verticalLayout_8">
+           <item>
+            <widget class="QLabel" name="labelAlarmSettings">
+             <property name="text">
+              <string>Alarm Settings</string>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">font-size: 14px;
+font-weight: bold;
+color: #4a6fa5;</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QGridLayout" name="gridLayout">
+             <item row="0" column="0">
+              <widget class="QLabel" name="labelHRHigh">
+               <property name="text">
+                <string>HR High Limit:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QSpinBox" name="spinHRHigh">
+               <property name="maximum">
+                <number>250</number>
+               </property>
+               <property name="value">
+                <number>120</number>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="2">
+              <widget class="QLabel" name="labelHRLow">
+               <property name="text">
+                <string>HR Low Limit:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="3">
+              <widget class="QSpinBox" name="spinHRLow">
+               <property name="maximum">
+                <number>120</number>
+               </property>
+               <property name="value">
+                <number>50</number>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="labelAsystole">
+               <property name="text">
+                <string>Asystole Duration:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QSpinBox" name="spinAsystole">
+               <property name="suffix">
+                <string> sec</string>
+               </property>
+               <property name="maximum">
+                <number>10</number>
+               </property>
+               <property name="value">
+                <number>3</number>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="2">
+              <widget class="QLabel" name="labelVFIB">
+               <property name="text">
+                <string>V-Fib Duration:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="3">
+              <widget class="QSpinBox" name="spinVFIB">
+               <property name="suffix">
+                <string> sec</string>
+               </property>
+               <property name="maximum">
+                <number>10</number>
+               </property>
+               <property name="value">
+                <number>5</number>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_6">
+          <item>
+           <spacer name="horizontalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnSaveSettings">
+            <property name="text">
+             <string>Save Settings</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../resources.qrc">
+              <normaloff>:/icons/save.png</normaloff>:/icons/save.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnDefaultSettings">
+            <property name="text">
+             <string>Restore Defaults</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../resources.qrc">
+              <normaloff>:/icons/restore.png</normaloff>:/icons/restore.png</iconset>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
