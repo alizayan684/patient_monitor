@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>PatientMonitoringSystem</class>
+ <widget class="QMainWindow" name="PatientMonitoringSystem">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1024</width>
+    <height>806</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Patient Monitoring System</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">/* Main Window */
+PatientMonitoringSystem {
+    background-color: #f5f7fa;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+/* Title Label */
+#titleLabel {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2c3e50;
+    padding: 15px 0;
+    margin-bottom: 5px;
+}
+
+/* Patient Info Label */
+#patientInfoLabel {
+    font-size: 14px;
+    color: #7f8c8d;
+    padding: 5px 0;
+    margin-bottom: 10px;
+}
+
+/* Tab Widget */
+QTabWidget::pane {
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    margin: 5px;
+    background: white;
+}
+
+QTabBar::tab {
+    background: #e5e7eb;
+    border: 1px solid #d1d5db;
+    border-bottom: none;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    padding: 8px 16px;
+    margin-right: 2px;
+    color: #4b5563;
+}
+
+QTabBar::tab:selected {
+    background: white;
+    color: #3b82f6;
+    border-color: #d1d5db;
+    border-bottom-color: white;
+}
+
+QTabBar::tab:hover {
+    background: #dbeafe;
+}
+
+/* ECG Plot Widget */
+#ecg_plot_widget {
+    background-color: #111827;
+    border-radius: 6px;
+    border: 1px solid #374151;
+}
+
+/* Group Boxes */
+QGroupBox {
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    margin-top: 10px;
+    padding-top: 25px;
+    background: white;
+    font-weight: bold;
+    color: #374151;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 5px;
+    color: #3b82f6;
+}
+
+/* Alarm Indicator */
+#alarm_indicator {
+    border-radius: 10px;
+    border: 1px solid #d1d5db;
+}
+
+/* Labels */
+QLabel {
+    color: #374151;
+    font-size: 13px;
+}
+
+/* Vital Signs Labels */
+#hrValueLabel, #rrValueLabel, #spo2ValueLabel {
+    font-weight: bold;
+    color: #1e40af;
+}
+
+/* Buttons */
+QPushButton {
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-size: 13px;
+    min-width: 100px;
+}
+
+QPushButton:hover {
+    background-color: #2563eb;
+}
+
+QPushButton:pressed {
+    background-color: #1d4ed8;
+}
+
+QPushButton:disabled {
+    background-color: #e5e7eb;
+    color: #9ca3af;
+}
+
+/* Status Bar */
+QStatusBar {
+    background-color: #e5e7eb;
+    color: #4b5563;
+    border-top: 1px solid #d1d5db;
+}
+
+/* Special Alarm States */
+#alarm_indicator[alarmState=&quot;critical&quot;] {
+    background-color: #ef4444;
+    border-color: #dc2626;
+}
+
+#alarm_indicator[alarmState=&quot;warning&quot;] {
+    background-color: #f59e0b;
+    border-color: #d97706;
+}
+
+#alarm_indicator[alarmState=&quot;normal&quot;] {
+    background-color: #10b981;
+    border-color: #059669;
+}
+
+/* Arrhythmia Detection */
+#arrhythmia_label[arrhythmiaState=&quot;detected&quot;] {
+    color: #ef4444;
+    font-weight: bold;
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QLabel" name="titleLabel">
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Patient Monitoring System</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="patientInfoLabel">
+      <property name="text">
+       <string>Patient ID: 12345 | Age: 42 | Gender: Male</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>ECG Monitoring</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QLabel" name="label_3">
+          <property name="text">
+           <string>Real-time ECG Waveform</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QWidget" name="ecg_plot_widget" native="true">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>300</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: #000000;</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupBox">
+          <property name="title">
+           <string>Arrhythmia Detection</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <item>
+            <widget class="QLabel" name="arrhythmia_label">
+             <property name="text">
+              <string>No Arrhythmia Detected</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="alarmGroup">
+          <property name="title">
+           <string>Alarms</string>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout">
+           <item>
+            <widget class="QLabel" name="alarm_label">
+             <property name="text">
+              <string>Status: Normal</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="alarm_indicator" native="true">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: #00FF00;</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="vitalsGroup">
+          <property name="title">
+           <string>Vital Signs</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_4">
+             <property name="text">
+              <string>Heart Rate:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLabel" name="hrValueLabel">
+             <property name="text">
+              <string>72 BPM</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_5">
+             <property name="text">
+              <string>Respiratory Rate:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLabel" name="rrValueLabel">
+             <property name="text">
+              <string>16 BPM</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_6">
+             <property name="text">
+              <string>SpO2:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QLabel" name="spo2ValueLabel">
+             <property name="text">
+              <string>98%</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupBox_2">
+          <property name="title">
+           <string>Controls</string>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <item>
+            <widget class="QPushButton" name="startButton">
+             <property name="text">
+              <string>Start Monitoring</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="stopButton">
+             <property name="text">
+              <string>Stop Monitoring</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="clearAlarmButton">
+             <property name="text">
+              <string>Clear Alarm</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
